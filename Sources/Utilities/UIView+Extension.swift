@@ -21,10 +21,10 @@ extension UIView {
         return constraints.filter { $0.identifier == withIdentifier }.first
     }
 
-    func setBubbleStyle(_ style: ALKMessageStyle.Bubble) {
+    func setBubbleStyle(_ style: ALKMessageStyle.Bubble, bgColor: UIColor) {
         layer.cornerRadius = style.cornerRadius
-        tintColor = style.color
-        backgroundColor = style.color
+        tintColor = bgColor
+        backgroundColor = bgColor
         layer.borderColor = style.border.color.cgColor
         layer.borderWidth = style.border.width
     }
