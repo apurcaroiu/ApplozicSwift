@@ -21,11 +21,19 @@ extension UIView {
         return constraints.filter { $0.identifier == withIdentifier }.first
     }
 
-    func setBubbleStyle(_ style: ALKMessageStyle.Bubble, bgColor: UIColor) {
+    func setBubbleStyle(_ style: ALKMessageStyle.Bubble, isReceiverSide: Bool) {
         layer.cornerRadius = style.cornerRadius
-        tintColor = bgColor
-        backgroundColor = bgColor
-        layer.borderColor = style.border.color.cgColor
-        layer.borderWidth = style.border.width
+        tintColor = style.color
+        if style.style == .round {
+            layer.borderColor = style.border.color.cgColor
+            layer.borderWidth = style.border.width
+        }
+
+        if isReceiverSide {
+            backgroundColor = style.color
+        } else {
+            let appSettings = ALKAppSettingsHelper()
+            backgroundColor = appSettings.getSentMessageBackgroundColor()
+        }
     }
 }
