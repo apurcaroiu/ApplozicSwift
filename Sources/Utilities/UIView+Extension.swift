@@ -28,12 +28,7 @@ extension UIView {
             layer.borderColor = style.border.color.cgColor
             layer.borderWidth = style.border.width
         }
-
-        if isReceiverSide {
-            backgroundColor = style.color
-        } else {
-            let appSettings = ALKAppSettingsHelper()
-            backgroundColor = appSettings.getSentMessageBackgroundColor()
-        }
+        let appSettingsUserDefaults = ALKAppSettingsUserDefaults()
+        backgroundColor = isReceiverSide ? appSettingsUserDefaults.getReceivedMessageBackgroundColor() : appSettingsUserDefaults.getSentMessageBackgroundColor()
     }
 }
